@@ -3,6 +3,8 @@
 This is a starter project for the individual practical coding exam. The
 application targets .NET 10 and contains a console application and xUnit tests.
 
+I have tried to keep the structure intact, meaning ConsoleUI handles the menu while BookingService handles the business logic and FileBookingRepository the file storing/loading.
+
 ## Requirements
 
 - .NET 10 SDK

@@ -5,12 +5,13 @@ Jag valde Fel nummer 3 i uppgiften. "Sökningen är skiftlägeskänslig" Det gic
 
 
 ### Hur återskapade du felet?
-Jag körde testet Search_WhenSearchTermHasDifferentCasings_ReturnsBooking
+Jag körde testet Search_WhenSearchTermHasDifferentCasing_ReturnsBooking. Det gick också att återskapa manuellt om man gick in i programmet och sökte med små bokstäver
+på "avanoria" så dök inte "Avanoria AB" upp. 
 
 
 ### Vilket resultat fick du?
 Resultatet av testet blev false (nekades) eftersom den returnerade en tom lista istället för en lista med 1 filtrerad kund. Eftersom Contain
-metoden inte blev godkänd så blev resultatet som returnerades "false" och listan stod tom.
+metoden inte blev godkänd så blev tester "false" eftersom listan stod tom när den förväntade sig en lista med 1 kund.
 
 
 ### Vilket resultat skulle du ha fått?
@@ -31,6 +32,9 @@ public IReadOnlyList<Booking> Search(string searchTerm)
             .ToList();
     }
 Koden uppdaterades då med "booking.CustomerName.Contains(searchTerm, StringComparison.OrdinalIgnoreCase))"
+
+Jag hade planerat först att ändra om så att det blev konsekvent enbart stora bokstäver eller enbart små bokstäver, alltså att jag skulle implementera ToLower() eller ToUpper()
+så att sökvariablerna kunde hålla sig samma, antingen små eller stora bokstäver konsekvent.
                 
           
 ### Varför gav koden ett felaktigt resultat?
