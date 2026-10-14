@@ -17,9 +17,8 @@ public class BookingService(IBookingRepository repository)
     {
         var bookings = repository.GetAll().Where(b => !b.IsCancelled).OrderBy(b => b.Date).ThenBy(b => b.StartTime).ToList();
 
-
         //filtering för om bokning är aktiv
-        // This method has not been completed.
+        
         return bookings;
     }
 
@@ -56,14 +55,14 @@ public class BookingService(IBookingRepository repository)
 
         if (filteredBooking == null)
         {
-            return BookingResult.Failure("Bokningen hittades inte");
+            return BookingResult.Failure("Booking was not found.");
         }
 
         filteredBooking.IsCancelled = true;
 
         repository.Save();
 
-        return BookingResult.Success("Bokningen har avbokats.");
+        return BookingResult.Success("Booking has been cancelled.");
     }
 
     private BookingResult Validate(Booking booking)
