@@ -10,8 +10,8 @@ på "avanoria" så dök inte "Avanoria AB" upp.
 
 
 ### Vilket resultat fick du?
-Resultatet av testet blev false (nekades) eftersom den returnerade en tom lista istället för en lista med 1 filtrerad kund. Eftersom Contain
-metoden inte blev godkänd så blev tester "false" eftersom listan stod tom när den förväntade sig en lista med 1 kund.
+Resultatet av testet gick inte igenom på sitt Assert.Single(result) krav eftersom den returnerade en tom lista istället för en lista med 1 filtrerad kund. Eftersom Contain
+metoden inte blev godkänd så returnerades listan som "false" eftersom listan stod tom när den förväntade sig en lista med 1 kund.
 
 
 ### Vilket resultat skulle du ha fått?
@@ -28,13 +28,16 @@ public IReadOnlyList<Booking> Search(string searchTerm)
         return repository.GetAll()
             .Where(booking =>
                 !booking.IsCancelled &&
-                booking.CustomerName.Contains(searchTerm)
+                booking.CustomerName.Contains(searchTerm))
             .ToList();
     }
 Koden uppdaterades då med "booking.CustomerName.Contains(searchTerm, StringComparison.OrdinalIgnoreCase))"
 
+### Alternativ lösning till buggen
 Jag hade planerat först att ändra om så att det blev konsekvent enbart stora bokstäver eller enbart små bokstäver, alltså att jag skulle implementera ToLower() eller ToUpper()
-så att sökvariablerna kunde hålla sig samma, antingen små eller stora bokstäver konsekvent.
+så att sökvariablerna kunde hålla sig samma, antingen små eller stora bokstäver konsekvent. Jag bestämde mig till slut att använda OrdinalIgnoreCase då jag tänkte att jag 
+måste dubbelkolla och ändra koden med ToLower på flera ställen än i bara metoden, väldigt enkelt att man kan råka missa att skriva det på 1 ställe och så blir det fel överallt.
+OrdinalIgnoreCase kom till poängen direkt och löste problemet.
                 
           
 ### Varför gav koden ett felaktigt resultat?

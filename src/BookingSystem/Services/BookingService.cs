@@ -49,7 +49,6 @@ public class BookingService(IBookingRepository repository)
 
     public BookingResult Cancel(int bookingId)
     {
-        //hämta ut bokning från listan (linq) och sätt isCancelled == true, spara fil.
         var bookings = repository.GetAll();
         var filteredBooking = bookings.FirstOrDefault(b => b.Id == bookingId);
 

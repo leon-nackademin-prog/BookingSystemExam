@@ -77,7 +77,7 @@ public class BookingConsole(BookingService service)
                 break;
             }
 
-            Console.WriteLine("Ogiltigt antal, försök igen.");
+            Console.WriteLine("Invalid input, please try again. (minimum of 1)");
 
         }
         
