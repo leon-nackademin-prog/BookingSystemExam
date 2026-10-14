@@ -6,6 +6,9 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
   <ItemGroup>
+    <None Include="..\..\README.md" Link="Docs\README.md" />
+  </ItemGroup>
+  <ItemGroup>
     <None Update="Data/bookings.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
